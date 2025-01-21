@@ -26,9 +26,7 @@ async def cmd_start_db(message):
         db.commit()
 
 async def check_student_by_id(user_id):
-    # Выполнение SQL-запроса
     cur.execute('SELECT * FROM studentsdata WHERE id = ?', (user_id,))
-    # Получение результата запроса
     result = cur.fetchone()
 
     # Если результат не None, то пользователь с указанным id существует в таблице
@@ -40,10 +38,8 @@ async def check_student_by_id(user_id):
         return False
 
 async def check_starost_by_id(user_id):
-    # Выполнение SQL-запроса
     cur.execute('SELECT * FROM starostdata WHERE id = ?', (user_id,))
 
-    # Получение результата запроса
     result = cur.fetchone()
 
     # Если результат не None, то пользователь с указанным id существует в таблице
@@ -55,10 +51,8 @@ async def check_starost_by_id(user_id):
         return False
 
 async def get_student_group_by_id(user_id):
-    # Выполнение SQL-запроса SELECT
     cur.execute('SELECT groupa FROM studentsdata WHERE id = ?', (user_id,))
 
-    # Получение результата запроса
     result = cur.fetchone()
 
     # Если результат не None, то возвращаем значение groupa
@@ -71,10 +65,8 @@ async def get_student_group_by_id(user_id):
         return None
 
 async def get_starost_group_by_id(user_id):
-    # Выполнение SQL-запроса SELECT
     cur.execute('SELECT groupa FROM starostdata WHERE id = ?', (user_id,))
 
-    # Получение результата запроса
     result = cur.fetchone()
 
     # Если результат не None, то возвращаем значение groupa
@@ -87,25 +79,3 @@ async def get_starost_group_by_id(user_id):
         return None
 
 
-
-# async def update_active_status(user_id, active):
-#     Выполнение SQL-запроса UPDATE
-#     cur.execute('UPDATE studentsdata SET active = ? WHERE id = ?', (active, user_id))
-#     Фиксация изменений
-#     db.commit()
-#
-# async def check_active_status(user_id):
-#     Выполнение SQL-запроса SELECT
-#     cur.execute('SELECT active FROM studentsdata WHERE id = ?', (user_id,))
-#
-#     Получение результата запроса
-#     result = cur.fetchone()
-#
-#     Если результат не None и равен 1, то параметр active равен 1
-#     if result is not None and result[0] == 1:
-#         print(f"check_active_status: Параметр active для пользователя с id {user_id} равен 1.")
-#         return True
-#     else:
-#         print(f"check_active_status: Параметр active для пользователя с id {user_id} не равен 1 или пользователя не существует.")
-#         return False
-#
